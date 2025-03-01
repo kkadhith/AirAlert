@@ -20,6 +20,7 @@ public struct AirAlert: View {
     
     public var isShowing: Binding<Bool>
     
+    @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
     public init(title: String, alertMessage: String, mainButtonLabel: String, secondButtonLabel: String, mainButtonAction: @escaping () -> Void, secondButtonAction: @escaping () -> Void, isShowing: Binding<Bool>) {
         self.title = title
@@ -56,7 +57,7 @@ public struct AirAlert: View {
                             .frame(minWidth: 80)
                     }
                     .buttonStyle(.bordered)
-                    .tint(.black)
+                    .tint(colorScheme == ColorScheme.light ? .black : .white)
                     Button(action: {
                         mainButtonAction()
                         isShowing.wrappedValue = false
@@ -74,7 +75,7 @@ public struct AirAlert: View {
             .padding(24)
             .background(
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(Color.white)
+                    .fill(colorScheme == ColorScheme.light ? Color.white : Color(UIColor.darkGray))
                     .shadow(radius: 8)
             )
             .padding(30)
