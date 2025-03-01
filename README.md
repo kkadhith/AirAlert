@@ -10,7 +10,7 @@ AirAlert can be used just like Apple's native alert modifier. However, AirAlert 
 To present an alert in SwiftUI, use `.airAlert(isPresented:title:alertMessage:mainButtonLabel:secondButtonLabel:mainButtonAction:secondButtonAction)` modifier. 
 
 For instance:
-```
+```swift
 import SwiftUI
 import AirAlert
 
