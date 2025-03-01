@@ -14,7 +14,7 @@ For instance:
 import SwiftUI
 import AirAlert
 
-struct NewAlert: View {
+struct ContentView: View {
     @State private var isShown = false
     
     var body: some View {
