@@ -21,8 +21,12 @@ struct NewAlert: View {
         Button(action: {isShown.toggle()}) {
             Text("AirAlert!")
         }
-        .airAlert(isPresented: $isShown, title: "Alert!", alertMessage: "A clean, simple alert!", mainButtonLabel: "OK", secondButtonLabel: "Cancel", mainButtonAction: {}, secondButtonAction: {})
-        
+        .airAlert(isPresented: $isShown,
+                  title: "Alert!", alertMessage: "A clean, simple alert!",
+                  mainButtonLabel: "OK",
+                  secondButtonLabel: "Cancel",
+                  mainButtonAction: {},
+                  secondButtonAction: {})
     }
 }
 ```
