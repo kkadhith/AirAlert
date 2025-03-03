@@ -10,7 +10,7 @@
 import SwiftUI
 
 public extension View {
-    func airAlert(isPresented: Binding<Bool>, title: String, alertMessage: String, mainButtonLabel: String, secondButtonLabel: String, mainButtonAction: @escaping () -> Void, secondButtonAction: @escaping () -> Void) -> some View {
+    func airAlert(isPresented: Binding<Bool>, title: String, alertMessage: String?, mainButtonLabel: String, secondButtonLabel: String, mainButtonAction: @escaping () -> Void, secondButtonAction: @escaping () -> Void) -> some View {
         ZStack {
             self
             
@@ -24,7 +24,10 @@ public extension View {
                 }
             }
         }
-        
         .animation(.spring(response:0.3, dampingFraction: 0.75), value: isPresented.wrappedValue)
+    }
+    
+    func airAlert(isPresented: Binding<Bool>, title: String, mainButtonLabel: String, secondButtonLabel: String, mainButtonAction: @escaping () -> Void, secondButtonAction: @escaping () -> Void) -> some View {
+        airAlert(isPresented: isPresented, title: title, alertMessage: nil, mainButtonLabel: mainButtonLabel, secondButtonLabel: secondButtonLabel, mainButtonAction: mainButtonAction, secondButtonAction: secondButtonAction)
     }
 }
