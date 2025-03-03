@@ -10,7 +10,7 @@
 import SwiftUI
 
 public extension View {
-    func airAlert(isPresented: Binding<Bool>, title: String, alertMessage: String?, mainButtonLabel: String, secondButtonLabel: String, mainButtonAction: @escaping () -> Void, secondButtonAction: @escaping () -> Void) -> some View {
+    func airAlert(isPresented: Binding<Bool>, textString: Binding<String>?, title: String, alertMessage: String?, mainButtonLabel: String, secondButtonLabel: String, textFieldLabel: String?, mainButtonAction: @escaping () -> Void, secondButtonAction: @escaping () -> Void) -> some View {
         ZStack {
             self
             
@@ -19,7 +19,7 @@ public extension View {
                     
                     Color.black.opacity(0.3)
                         .ignoresSafeArea()
-                    AirAlert(title: title, alertMessage: alertMessage, mainButtonLabel: mainButtonLabel, secondButtonLabel: secondButtonLabel, mainButtonAction: mainButtonAction, secondButtonAction: secondButtonAction, isShowing: isPresented)
+                    AirAlert(title: title, alertMessage: alertMessage, mainButtonLabel: mainButtonLabel, secondButtonLabel: secondButtonLabel, textFieldLabel: textFieldLabel, mainButtonAction: mainButtonAction, secondButtonAction: secondButtonAction, isShowing: isPresented, textString: textString)
                         .transition(.scale(scale: 0.8).combined(with:.opacity))
                 }
             }
@@ -28,6 +28,15 @@ public extension View {
     }
     
     func airAlert(isPresented: Binding<Bool>, title: String, mainButtonLabel: String, secondButtonLabel: String, mainButtonAction: @escaping () -> Void, secondButtonAction: @escaping () -> Void) -> some View {
-        airAlert(isPresented: isPresented, title: title, alertMessage: nil, mainButtonLabel: mainButtonLabel, secondButtonLabel: secondButtonLabel, mainButtonAction: mainButtonAction, secondButtonAction: secondButtonAction)
+        airAlert(isPresented: isPresented, textString: nil, title: title, alertMessage: nil, mainButtonLabel: mainButtonLabel, secondButtonLabel: secondButtonLabel, textFieldLabel: nil, mainButtonAction: mainButtonAction, secondButtonAction: secondButtonAction)
     }
+    
+    func airAlert(isPresented: Binding<Bool>, title: String, alertMessage: String, mainButtonLabel: String, secondButtonLabel: String, mainButtonAction: @escaping () -> Void, secondButtonAction: @escaping () -> Void) -> some View {
+        airAlert(isPresented: isPresented, textString: nil, title: title, alertMessage: alertMessage, mainButtonLabel: mainButtonLabel, secondButtonLabel: secondButtonLabel, textFieldLabel: nil, mainButtonAction: mainButtonAction, secondButtonAction: secondButtonAction)
+    }
+    
+    func airAlert(isPresented: Binding<Bool>, textString: Binding<String>, title: String, mainButtonLabel: String, secondButtonLabel: String, textFieldLabel: String, mainButtonAction: @escaping () -> Void, secondButtonAction: @escaping () -> Void) -> some View {
+        airAlert(isPresented: isPresented, textString: textString, title: title, alertMessage: nil, mainButtonLabel: mainButtonLabel, secondButtonLabel: secondButtonLabel, textFieldLabel: textFieldLabel, mainButtonAction: mainButtonAction, secondButtonAction: secondButtonAction)
+    }
+    
 }
