@@ -14,25 +14,29 @@ public struct AirAlert: View {
     
     public var mainButtonLabel: String
     public var secondButtonLabel: String
+    public var textFieldLabel: String?
     
     public var mainButtonAction: () -> Void
     public var secondButtonAction: () -> Void
     
     public var isShowing: Binding<Bool>
+    public var textString: Binding<String>?
     
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
-    public init(title: String, alertMessage: String? = nil, mainButtonLabel: String, secondButtonLabel: String, mainButtonAction: @escaping () -> Void, secondButtonAction: @escaping () -> Void, isShowing: Binding<Bool>) {
+    public init(title: String, alertMessage: String? = nil, mainButtonLabel: String, secondButtonLabel: String, textFieldLabel: String? = nil, mainButtonAction: @escaping () -> Void, secondButtonAction: @escaping () -> Void, isShowing: Binding<Bool>, textString: Binding<String>? = nil) {
         self.title = title
         self.alertMessage = alertMessage
         
         self.mainButtonLabel = mainButtonLabel
         self.secondButtonLabel = secondButtonLabel
+        self.textFieldLabel = textFieldLabel
         
         self.mainButtonAction = mainButtonAction
         self.secondButtonAction = secondButtonAction
         
         self.isShowing = isShowing
+        self.textString = textString
     }
     
     public var body: some View {
@@ -45,6 +49,11 @@ public struct AirAlert: View {
                     Text(alertMessage)
                         .font(Font.body)
                         .multilineTextAlignment(.center)
+                }
+                
+                if let textFieldLabel = textFieldLabel, let textString = textString {
+                    TextField(textFieldLabel, text: textString)
+                        .textFieldStyle(.roundedBorder)
                 }
                 
                 HStack(spacing: 16) {
