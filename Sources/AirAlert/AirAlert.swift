@@ -10,7 +10,7 @@ import SwiftUI
 
 public struct AirAlert: View {
     public var title: String
-    public var alertMessage: String
+    public var alertMessage: String?
     
     public var mainButtonLabel: String
     public var secondButtonLabel: String
@@ -22,7 +22,7 @@ public struct AirAlert: View {
     
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
     
-    public init(title: String, alertMessage: String, mainButtonLabel: String, secondButtonLabel: String, mainButtonAction: @escaping () -> Void, secondButtonAction: @escaping () -> Void, isShowing: Binding<Bool>) {
+    public init(title: String, alertMessage: String? = nil, mainButtonLabel: String, secondButtonLabel: String, mainButtonAction: @escaping () -> Void, secondButtonAction: @escaping () -> Void, isShowing: Binding<Bool>) {
         self.title = title
         self.alertMessage = alertMessage
         
@@ -41,9 +41,11 @@ public struct AirAlert: View {
                     .font(Font.headline)
                     .bold()
                 
-                Text(alertMessage)
-                    .font(Font.body)
-                    .multilineTextAlignment(.center)
+                if let alertMessage = alertMessage {
+                    Text(alertMessage)
+                        .font(Font.body)
+                        .multilineTextAlignment(.center)
+                }
                 
                 HStack(spacing: 16) {
                     Button(action: {
