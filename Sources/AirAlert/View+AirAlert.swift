@@ -20,11 +20,11 @@ public extension View {
                     Color.black.opacity(0.3)
                         .ignoresSafeArea()
                     AirAlert(title: title, alertMessage: alertMessage, mainButtonLabel: mainButtonLabel, secondButtonLabel: secondButtonLabel, textFieldLabel: textFieldLabel, mainButtonAction: mainButtonAction, secondButtonAction: secondButtonAction, isShowing: isPresented, textString: textString)
-                        .transition(.scale(scale: 0.8).combined(with:.opacity))
+                        .transition(.scale(scale: 0.6).combined(with:.opacity))
                 }
             }
         }
-        .animation(.spring(response:0.3, dampingFraction: 0.75), value: isPresented.wrappedValue)
+        .animation(.spring(response:0.25, dampingFraction: 1), value: isPresented.wrappedValue)
     }
     
     func airAlert(isPresented: Binding<Bool>, title: String, mainButtonLabel: String, secondButtonLabel: String, mainButtonAction: @escaping () -> Void, secondButtonAction: @escaping () -> Void) -> some View {
