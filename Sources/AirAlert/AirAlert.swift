@@ -23,7 +23,7 @@ public struct AirAlert: View {
     public var textString: Binding<String>?
     
     @Environment(\.colorScheme) private var colorScheme: ColorScheme
-    @FocusState private var focusState: Bool
+    @FocusState private var isFocused: Bool
     
     public init(title: String, alertMessage: String? = nil, mainButtonLabel: String, secondButtonLabel: String, textFieldLabel: String? = nil, mainButtonAction: @escaping () -> Void, secondButtonAction: @escaping () -> Void, isShowing: Binding<Bool>, textString: Binding<String>? = nil) {
         self.title = title
@@ -55,7 +55,7 @@ public struct AirAlert: View {
                 if let textFieldLabel = textFieldLabel, let textString = textString {
                     TextField(textFieldLabel, text: textString)
                         .textFieldStyle(.roundedBorder)
-                        .focused($focusState)
+                        .focused($isFocused)
                 }
                 
                 HStack(spacing: 16) {
@@ -73,7 +73,7 @@ public struct AirAlert: View {
                     .tint(colorScheme == ColorScheme.light ? .black : .white)
                     Button(action: {
                         mainButtonAction()
-                        focusState = false
+                        isFocused = false
                         isShowing.wrappedValue = false
                     }) {
                         Text(mainButtonLabel)
