@@ -61,6 +61,7 @@ public struct AirAlert: View {
                 HStack(spacing: 16) {
                     Button(action: {
                         secondButtonAction()
+                        isFocused = false
                         isShowing.wrappedValue = false
                     }) {
                         Text(secondButtonLabel)
