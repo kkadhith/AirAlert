@@ -25,6 +25,7 @@ public extension View {
             }
         }
         .animation(.spring(response:0.25, dampingFraction: 1), value: isPresented.wrappedValue)
+        .sensoryFeedback(SensoryFeedback.increase, trigger: isPresented.wrappedValue)
     }
     
     func airAlert(isPresented: Binding<Bool>, title: String, mainButtonLabel: String, secondButtonLabel: String, mainButtonAction: @escaping () -> Void, secondButtonAction: @escaping () -> Void) -> some View {
